@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Question</title>
+    <style>
+    a:hover {
+        color: red;
+        }
+        body{
+        background-color:#095c27 ;
+        }
+        h1{
+        color:white;
+        margin-left: 180px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .button1{
+        margin-left:1300px;
+        margin-top: 40px;
+        }
+        .button1{min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       background-color:#095c27;
+       }
+       .button1 a{
+        text-decoration:none;
+        color: white;
+        }
+        a:hover {
+        color: red;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: -70px;
+        margin-left:40px;
+        border-radius: 30%;
+        }
+        .header{
+        background-color: #095c27;
+        overflow: hidden;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        }
+        h2{
+        color:#095c27;
+        font-size:40px;
+        margin-top:5px;
+        margin-left:200px;
+        }
+        form{
+        margin-top:-10px;
+        color:#095c27;
+        font-size:22px;
+        text-decoration:none;
+        margin-left:180px;
+        }
+        input{min-width: 40px;
+        height: 20px;
+        border-radius: 10px;
+        font-size:1.4rem;
+        z-index: 2;
+        }
+        .button2{min-width: 50px;
+       height: 50px;
+       border-radius: 25px;
+       border: none;
+       font-size:1.4rem;
+       background-color:#095c27;
+       color: white;
+       margin-left:80px;
+       }
+       .button2:hover {
+        color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+<button class="button1"><a href="{% url 'home'%}"> Home </a></button>
+
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+</div>
+<div class="card-columns" style=" margin-left: 470px;">
+        <div class="card" align="centre " style=" width: 40rem; border:5px white solid;background-color: white;">
+  <h2>Add Question</h2>
+        <div>
+           <form action="" method="POST">
+              {% csrf_token %}
+                {{form.as_p}}
+
+             <input class="button2" type="submit" name="Submit">
+             </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

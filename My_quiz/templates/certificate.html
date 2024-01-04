@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+    <style>
+  .cert {
+  border: 15px solid #0072c6;
+  border-right: 15px solid #0894fb;
+  border-left: 15px solid #0894fb;
+  position:sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  border: 15px solid #0072c6;
+  border-right: 15px solid #0894fb;
+  border-left: 15px solid #0894fb;
+  font-family: arial;
+  color: #383737;
+  font-family: arial;
+  color: #383737;
+  background-color: white;
+}
+
+.crt_title {
+  margin-top: 30px;
+  font-family: "Satisfy", cursive;
+  font-size: 40px;
+  letter-spacing: 1px;
+  color: #0060a9;
+}
+.crt_logo img {
+  width: 130px;
+  height: auto;
+  margin: auto;
+  padding: 30px;
+}
+.colorGreen {
+  color: #27ae60;
+}
+.crt_user {
+  display: inline-block;
+  width: 80%;
+  padding: 5px 25px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  font-family: "Satisfy", cursive;
+  font-size: 40px;
+  border-bottom: 1px dashed #cecece;
+}
+
+.afterName {
+  font-weight: 100;
+  color: #383737;
+}
+.colorGrey {
+  color: grey;
+}
+.certSign {
+  width: 200px;
+}
+
+@media (max-width: 700px) {
+  .cert {
+    width: 100%;
+  }
+}
+
+a:hover {
+        color: red;
+        }
+        body{
+        background-color: #095c27;
+        }
+        h1{
+        color:white;
+        margin-left: 180px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .button1{
+        margin-left:1100px;
+        margin-top: 40px;
+       min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       background-color:#095c27;
+
+       }
+       .button1 a{
+        text-decoration:none;
+        color: white;
+        margin-right: 25px;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: -70px;
+        margin-left:40px;
+        border-radius: 30%;
+        }
+        .header{
+        background-color: #095c27;
+        overflow: hidden;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        }
+        img{
+        height: 150px;
+        width: 800px;
+        }
+        a{
+        text-decoration:none;
+        }
+        button{
+        min-width: 40px;
+       height: 40px;
+       border-radius: 10px;
+       border: none;
+       font-size:1.2rem;
+       color:white;
+       background-color: #aeff21;
+        }
+        .a1:hover {
+        color: red;
+        }
+        .a2:hover {
+        color: red;
+        }
+        .a3:hover {
+        color: red;
+        }
+        .button2{
+
+       min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       color:#095c27;
+       background-color:white;
+
+       }
+       .button12 a{
+        text-decoration:none;
+        color: red;
+        }
+</style>
+</head>
+<body>
+<div class="header">
+<button class="button1"><a href="{% url 'home'%}"> Home </a>
+<a class="a2" href="{% url 'user_scores'%}"> Rank </a>
+<a class="a3" href="{% url 'main'%}"> Main </a></button>
+
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+</div>
+
+  <table class="cert">
+    <tr>
+        <td align="center">
+            <h2 class="crt_title">Certificate Of Completion</h2>
+            <h2>This Certificate is awarded to</h2>
+            <h2 class="colorGreen crt_user">{{ first_name }}{{ last_name }}</h2>
+            <h3 class="afterName">For his/her completion of Quiz</h3>
+            <h3 class="afterName">along with {{percentage}} % of percentage for {{level}}</h3>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <img src="https://camo.githubusercontent.com/805e05b94844e39d7edd518f492c8599c71835b3/687474703a2f2f692e696d6775722e636f6d2f646e5873344e442e706e67" class="certSign" alt="sign">
+            <h3>Person Name </h3>
+            <h3>Learning Lead</h3>
+            <h3>Department Name</h3>
+            <h3 style="border: none;">Awarded on <span id="currentDate" style="margin-left: 10px;">{{date}}</span></h3>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
+
+

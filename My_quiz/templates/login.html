@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <style>
+        h2{
+        color:#095c27;
+        margin-left:235px;
+        font-size:40px;
+        margin-top: 0px;
+        }
+        body{
+        background-color: #095c27;
+        }
+        h1{
+        color:white;
+        margin-left: 700px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: 0px;
+        margin-left:550px;
+        border-radius: 30%;
+        }
+        a:hover {
+        color: red;
+        }
+        .header{
+        background-color: #095c27;
+        overflow: hidden;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        }
+        form{
+        color:#095c27;
+        margin-left: 20px;
+        font-size:1.4rem;
+        text-decoration:none;
+        padding:10px;
+        margin-top:20px;
+        }
+        input{min-width: 50px;
+        height: 30px;
+        color:#095c27;
+        border-radius: 10px;
+        border: none;
+        font-size:1.4rem;
+        margin-top:-70px;
+        z-index: 2;
+        }
+       button{min-width: 490px;
+       height: 50px;
+       border-radius: 15px;
+       border: none;
+       font-size:1.8rem;
+       color:white;
+       margin-top:-60px;
+       background-color:#095c27;
+       margin-left: 0px;
+        }
+        button:hover {
+        color: red;
+        background-color:#095c27;
+        }
+        .hr1{
+        margin-top:-30px;
+        }
+        a{
+        color:#095c27;
+        margin-left: 10px;
+        font-size:30px;
+        text-decoration:none;
+
+        margin-top: 0px;
+        }
+        .p1{
+        color:#095c27;
+        margin-left: 150px;
+        margin-top: 5px;
+        font-size:20px;
+        }
+</style>
+</head>
+
+<body>
+<div class="header">
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+</div>
+<div class="card-columns" style=" margin-left: 480px;">
+    <div class="card" align="centre " style=" width: 35rem; border:5px white solid;background-color: white;">
+    <h2>Login</h2>
+    <hr class="hr1">
+    <form action="{% url 'login_user' %}" method="POST" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+
+            <br>
+            <button type="submit" value="Login" class="btn btn-block btn-primary">LOGIN</button>
+
+    </form>
+
+        <br>
+        <p class="p1">Haven't register yet? <a  href="{% url 'player_register' %}">Register</a></p>
+    </div>
+</div>
+</body>
+
+</html>

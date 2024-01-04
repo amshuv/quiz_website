@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Level 2</title>
+    <style>
+        .greet {
+            font-size: 18px;
+            color: #fff;
+            margin-right: 20px;
+        }
+
+        tbody tr:not(.visible) {
+            display: none;
+        }
+        body{
+        background-color: #095c27;
+        }
+        h1{
+        color:white;
+        margin-left: 180px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .button1{
+        margin-left:1150px;
+        margin-top: 40px;
+        }
+        .button1{min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       color:white;
+       background-color:#095c27;
+       }
+       .button1 a{
+        text-decoration:none;
+        color: white;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: -70px;
+        margin-left:40px;
+        border-radius: 30%;
+        }
+        .header{
+        background-color: #095c27;
+        overflow: hidden;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        }
+        h3{
+    font-size:40px;
+    margin-top: 0px;
+    color:#095c27;
+    text-align: center;
+    }
+    h2{
+    font-size:40px;
+    margin-top: -40px;
+    color:#095c27;
+    text-align: center;
+    }
+    .que{
+    font-size: 40px;
+    padding: 30px;
+    color:#095c27;
+    }
+    .form-check{
+    font-size:30px;
+    margin-left: 30px;
+    color:#095c27;
+    margin-top: 10px;
+    }
+    .btn1{
+    min-width: 80px;
+    height: 40px;
+      border-radius: 15px;
+       border: none;
+       font-size:1.8rem;
+       color:white;
+       background-color:#095c27;
+       margin-left:30px;
+    }
+    .btn2{
+    min-width: 80px;
+    height: 40px;
+      border-radius: 15px;
+       border: none;
+       font-size:1.8rem;
+       color:white;
+       background-color:#095c27;
+       margin-left:350px;
+    }
+    .btn3{
+    width: 120px;
+    height: 40px;
+      border-radius: 15px;
+       border: none;
+       font-size:1.8rem;
+       color:white;
+       background-color:#095c27;
+       margin-top:30px;
+       margin-left:260px;
+    }
+
+    </style>
+</head>
+<body>
+<div class="header">
+<button class="button1"><div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div></button>
+
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+</div>
+
+<div class="card-columns" style=" margin-left: 470px;">
+        <div class="card" align="centre " style=" width: 40rem; border:5px white solid;background-color: white;">
+
+<a href="{% url 'login_user' %}"></a>
+<h3>ALL THE BEST : {{ user.get_username }}</h3>
+
+    <h2>Level 2</h2>
+
+    <form id="quiz-form" method="post" action="">
+        <table>
+            <tbody>
+                {% csrf_token %}
+                {% for q in questions %}
+                <tr class="quiz-question">
+                    <td>
+                        <label class="que">{{ q.question }}</label>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{ q.question }}" value="option1" checked>
+                            <label class="form-check-label">
+                                {{ q.op1 }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{ q.question }}" value="option2">
+                            <label class="form-check-label">
+                                {{ q.op2 }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{ q.question }}" value="option3">
+                            <label class="form-check-label">
+                                {{ q.op3 }}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class=form-check-input" type="radio" name="{{ q.question }}" value="option4">
+                            <label class="form-check-label">
+                                {{ q.op4 }}
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input id="timer" type="hidden" name="timer" value="">
+        <br>
+        <button id="prev" type="button" class="btn1 btn-primary" name="button">Previous</button>
+    <button id="next" type="button" class="btn2 btn-primary" name="button">Next</button>
+        <button type="submit" class="btn3 btn-primary" value="Submit Quiz">Submit</button>
+    </form>
+    <br>
+
+
+
+    {% block script %}
+    <script>
+        console.log('hello world');
+        const timer = document.getElementById('displaytimer');
+        console.log(timer.textContent);
+        const inputtag = document.getElementById('timer');
+        let t = 90;
+
+        // Update the timer every second
+        const timerInterval = setInterval(() => {
+            t -= 1;
+            timer.innerHTML = "<b>Timer: " + t + " seconds</b>";
+            inputtag.value = t;
+
+            // Check if 90 seconds have passed, then submit the form
+            if (t <= 0) {
+                clearInterval(timerInterval); // Stop the timer
+                document.getElementById('quiz-form').submit(); // Submit the form
+            }
+        }, 1000);
+
+        const questions = document.querySelectorAll('.quiz-question');
+        let currentQuestion = 0;
+
+        function showQuestion(index) {
+            questions.forEach((question, i) => {
+                if (i === index) {
+                    question.style.display = 'table-row';
+                } else {
+                    question.style.display = 'none';
+                }
+            });
+        }
+
+        showQuestion(currentQuestion);
+
+        document.querySelector('#next').addEventListener('click', function () {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        document.querySelector('#prev').addEventListener('click', function () {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+    </script>
+    {% endblock script %}
+        </div>
+</div>
+</body>
+</html>

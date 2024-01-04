@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        a:hover {
+        color: red;
+        }
+        body{
+        background-color: #095c27;
+        }
+        h1{
+        color:white;
+        margin-left: 180px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .button1{
+        margin-left:1200px;
+        margin-top: 40px;
+       min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       background-color:#095c27;
+
+       }
+       .button1 a{
+        text-decoration:none;
+        color: white;
+        margin-right: 40px;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: -70px;
+        margin-left:40px;
+        border-radius: 30%;
+        }
+        .header{
+        background-color: #095c27;
+        overflow: hidden;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        }
+        img{
+        height: 150px;
+        width: 800px;
+        }
+        .card-body{
+        color:black;
+        background-color: white;
+        font-size:2rem;
+        margin-left: 100px;
+        }
+        a{
+        text-decoration:none;
+        }
+        button{
+        min-width: 40px;
+       height: 40px;
+       border-radius: 10px;
+       border: none;
+       font-size:1.2rem;
+       color:white;
+       background-color: #aeff21;
+        }
+        .a1:hover {
+        color: red;
+        }
+        .a2:hover {
+        color: red;
+        }
+        .a3:hover {
+        color: red;
+        }
+        .button2{
+        margin-left:50px;
+       min-width: 50px;
+       height: 60px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       color: white;
+       background-color:#095c27;
+       }
+        .a3{
+        text-decoration:none;
+        color: white;
+        }
+       .button12 a{
+        text-decoration:none;
+        color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+<button class="button1"><a class="a1" href="{% url 'home'%}"> Home </a>
+    <a class="a2" href="{% url 'user_scores'%}"> Rank </a></button>
+
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+</div>
+
+
+<div class="container ">
+    <div class="card-columns" style="padding: 10px; margin-left: 350px;">
+        <div class="card" align="centre " style="width: 50rem; border:5px white solid;background-color: white;">
+            <img class="card-img-top" src="https://www.shutterstock.com/image-vector/congratulations-paper-banner-color-confetti-260nw-401555242.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Score :    {{score}}</h5>
+                <p class="card-text">Percentage :    {{percent}}%</p>
+                <p class="card-text">Time Taken :    {{time}} seconds</p>
+                <p class="card-text">Correct answers :    {{correct}}</p>
+                <p class="card-text">Incorrect answers :    {{wrong}}</p>
+                <p class="card-text">Total questions :    {{total}}</p>
+                <p class="card-text">Level :    {{level}}</p>
+                <h5>All the best for next quiz!</h5>
+                {% if percent > 60.0 %}
+                <button class="button2"><a class="a3" href="{% url 'generate_certificate'%}"> Click here to get your certificate </a></button>
+                {% endif %}
+
+                <p></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

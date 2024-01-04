@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <style>
+        a:hover {
+        color: red;
+        }
+        body{
+        background-color: #095c27;
+        }
+        h1{
+        color:white;
+        margin-left: 180px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .button1{
+        margin-left:1300px;
+        margin-top: 40px;
+        min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       background-color:#095c27;
+       }
+       .button1 a{
+        text-decoration:none;
+        color: white;
+        }
+
+        .button2{
+        margin-top: -300px;
+        margin-left:40px;
+        }
+        .button2{min-width: 250px;
+       height: 60px;
+       border-radius: 25px;
+       border: none;
+       font-size:2rem;
+       background-color:#e64096;
+       }
+       button:hover a {
+        color: #cc0606;
+        }
+        .button2 a{
+        text-decoration:none;
+        color: white;
+        }
+        .pre2{
+        color:white;
+        margin-top: 50px;
+        font-size:30px;
+        line-height:1.2;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        margin-left:20px;
+        }
+        .pre1{
+        color:white;
+        font-size:30px;
+        line-height:1.2;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        margin-left:20px;
+        margin-top: -100px;
+        }
+        h2{
+        margin-top: -200px;
+        font-size:50px;
+        line-height:1.2;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        margin-left:50px;
+        color:white;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: -70px;
+        margin-left:40px;
+        border-radius: 30%;
+        }
+        .fox1{
+        height:220px;
+        width: 230px;
+        margin-top: 10px;
+        margin-left:870px;
+        }
+        .cloud1{
+        height:170px;
+        width: 180px;
+        margin-top:80px;
+        margin-left:1100px;
+        }
+        .pre3{
+        margin-left:1105px;
+        margin-top:-170px;
+        color:white;
+        font-size:23px;
+        }
+    </style>
+</head>
+<body>
+<button class="button1"><a id="login1" href="{% url 'login_user' %}">Login</a></button>
+
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+<img src="https://cdn-icons-png.flaticon.com/128/753/753219.png" class="cloud1">
+    <h2>Online Quiz Creator</h2>
+
+<pre class="pre2">
+    Playing and creating quizzes has never been more
+    <strong>easy & fun </strong> with our online quiz software!
+
+</pre>
+
+<pre class="pre3">
+    Register
+      now
+</pre>
+
+<img src="https://cdn-icons-png.flaticon.com/128/2938/2938235.png" class="fox1">
+{% if user.is_authenticated%}
+    <pre class="pre1">
+    <strong>Hi {{user.get_username}} would you like to:</strong><button class="button2"> <a href="{% url 'logout_user' %}">Logout</a></button> <br>
+   <strong>Get a new user to register:</strong><button class="button2"><a href="{% url 'player_register' %}">Register</a></button>
+    </pre>
+
+{% else %}
+    <pre class="pre1">
+    <strong>Register to play Quiz:</strong><button class="button2"><a href="{% url 'player_register' %}">Register</a></button></pre>
+{% endif %}
+
+</body>
+</html>

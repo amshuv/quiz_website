@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rank list</title>
+    <style>
+        tbody tr:not(.visible) {
+        display: none;
+        }
+        a:hover {
+        color: red;
+        }
+        body{
+        background-color: #095c27;
+        }
+        h1{
+        color:white;
+        margin-left: 180px;
+        font-size:60px;
+        margin-top: -100px;
+        }
+        .button1{
+        margin-left:1300px;
+        margin-top: 40px;
+        }
+        .button1{min-width: 50px;
+       height: 40px;
+       border-radius: 25px;
+       border: none;
+       font-size:2.2rem;
+       background-color:#095c27;
+       }
+       .button1 a{
+        text-decoration:none;
+        color: white;
+        }
+        .fox{
+        height:120px;
+        width: 130px;
+        margin-top: -70px;
+        margin-left:40px;
+        border-radius: 30%;
+        }
+        .header{
+        background-color: #095c27;
+        overflow: hidden;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        }
+        h2{
+    font-size:40px;
+    margin-top: -10px;
+    color:#095c27;
+    text-align: center;
+    }
+    .btn1{
+    min-width: 80px;
+    height: 40px;
+      border-radius: 15px;
+       border: none;
+       font-size:1.8rem;
+       color:white;
+       background-color:#095c27;
+       margin-left:30px;
+    }
+    .btn2{
+    min-width: 80px;
+    height: 40px;
+      border-radius: 15px;
+       border: none;
+       font-size:1.8rem;
+       color:white;
+       background-color:#095c27;
+       margin-left:350px;
+    }
+    th{
+    font-size:30px;
+    color:#095c27;
+    }
+    td{
+    font-size:25px;
+    color:#095c27;
+    }
+    table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding-bottom: 15px;
+  padding-left: 45px;
+  padding-right: 40px;
+}
+    </style>
+</head>
+<body>
+<div class="header">
+<button class="button1"><a href="{% url 'home'%}"> Home </a></button>
+
+<img src="https://cdn.shopify.com/s/files/1/0558/6413/1764/files/Fox_Logo_Designs_1_1024x1024.gif?v=1657192005 " class="fox">
+<h1>Quizzers</h1>
+<hr>
+</div>
+
+<div class="card-columns" style=" margin-left: 450px;">
+        <div class="card" align="centre " style=" width: 40rem; border:5px white solid;background-color: white;">
+
+ <h2>Rank board</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>User</th>
+            <th>Score</th>
+            <th>Level</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user_score in user_scores %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ user_score.user }}</td>
+            <td>{{ user_score.score }}</td>
+            <td>{{ user_score.level }}</td>
+        </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+
+<button id="prev" type="button" class="btn1 btn-primary" name="button">Previous</button>
+ <button id="next" type="button" class="btn2 btn-primary" name="button">Next</button>
+            </div>
+    </div>
+<script>
+const visible_rows = 8; //no of rows visible at the time of table
+const table_rows = document.querySelectorAll('tbody tr');  // tr elements within the tbody of table
+
+if (!document.querySelector('.active')) {
+  table_rows[0].classList.add('active');
+}
+// checks if there is no element with class active in table // it will add to active class to 1st row in the table
+
+function showRows() {
+  let active_row = document.querySelector('.active');
+// it hides all rows in the table by removing the visible class
+  for (i = 0; i < table_rows.length; i++) {
+    table_rows[i].classList.remove('visible');
+  }
+
+  for (i = 0; i < visible_rows; i++) {
+    active_row.classList.add('visible');
+ // it adds the visible class to the no of rows specified by visible rows
+    if (active_row.nextElementSibling) {
+      active_row = active_row.nextElementSibling;
+    }
+  }
+}
+
+document.querySelector('#next').addEventListener('click', function() {
+  const active_row = document.querySelector('.active');
+  const active_index = active_row.rowIndex;
+  // next btn // this code adds  event listener to the element
+  // click on nxt btn checks if there is enough rows to display & activate the rows and calls
+
+  if (table_rows.length > active_index + visible_rows - 1) {
+    active_row.classList.remove('active');
+    table_rows[active_index + visible_rows - 1].classList.add('active');
+    showRows();
+  }
+});
+
+document.querySelector('#prev').addEventListener('click', function() {
+  const active_row = document.querySelector('.active');
+  const active_index = active_row.rowIndex;
+// prev btn // it will check prev btn it checks if there are prev rows to display and update
+  if (active_index > 1) {
+    active_row.classList.remove('active');
+    table_rows[active_index - visible_rows - 1].classList.add('active');
+    showRows();  // initially sets up visibility of rows when page is loaded
+
+  }
+});
+
+showRows();
+</script>
+</body>
+</html>
